@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe "books/edit", type: :view do
   before(:each) do
     @book = assign(:book, Book.create!(
-      title: "MyString"
+      title: "MyString",
+      author: "MyString",
+      price: ""
     ))
   end
 
@@ -13,6 +15,10 @@ RSpec.describe "books/edit", type: :view do
     assert_select "form[action=?][method=?]", book_path(@book), "post" do
 
       assert_select "input[name=?]", "book[title]"
+
+      assert_select "input[name=?]", "book[author]"
+
+      assert_select "input[name=?]", "book[price]"
     end
   end
 end
