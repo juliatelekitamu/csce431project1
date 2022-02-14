@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TestApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <h1>User Books</h1>
   </head>
 
   <body>
-    <%= yield %>
+    <% @users.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+      <td class="actions">
+        <%= link_to("Show", user_path(user), :class => 'action show') %>
+        <%= link_to("Edit", edit_user_path(user), :class => 'action edit') %>
+        <%= link_to("Destroy", delete_user_path(user), :class => 'action delete') %>
+      </td>
+      <%= yield %>
+      </tr>
+    <% end %>
   </body>
+  <%= link_to 'New User Book', new_book_path %><br>
+  <%= link_to 'Book index', book_path %><br>
+  <%= link_to 'User index', user_index %>
 </html>
+
+
